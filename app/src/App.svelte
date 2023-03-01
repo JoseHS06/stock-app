@@ -1,11 +1,16 @@
 <script>
+   import Navbar from './components/Navbar.svelte';
+   import ProductList from './components/Products.svelte';
+   import AddInventory from './components/Add-Inventory.svelte';
+   import AddProduct from './components/Add-Product.svelte';
 </script>
 
-<nav class="navbar bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="./">Stock App</a>
-    <form class="d-flex" role="search">
-        <button class="btn btn-primary" type="button">Agregar Producto</button>
-    </form>
-  </div>
-</nav>
+
+<main class="container">
+  
+  <Navbar/>
+  <ProductList/>
+  <AddInventory/>
+  <AddProduct/>
+
+</main>
