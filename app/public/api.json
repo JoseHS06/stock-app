@@ -1,0 +1,13 @@
+{
+    "products":[
+        {
+            "name": "Laptop Notebook HP",
+            "stock": 30
+        },
+        {
+            "name": "Mouse HP",
+            "stock": 10
+        }
+
+    ]
+}

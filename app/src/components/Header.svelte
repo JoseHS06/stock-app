@@ -1,4 +1,8 @@
-  <!-- Navbar -->
+
+  <script>
+       import Searchbar from "./Searchbar.svelte";
+  </script>
+  
   <div
     class="d-flex align-items-center p-3 my-3 text-white rounded shadow"
     style="background-color: #130f40"
@@ -12,4 +16,4 @@
     </div>
   </div>
 
-  <!-- Navbar -->
+  <Searchbar on:input/>

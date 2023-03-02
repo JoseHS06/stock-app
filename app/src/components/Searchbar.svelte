@@ -1,8 +1,7 @@
 <script>
-  import { productList } from "./js/products.js";
+    let search = '';
 </script>
 
-<!-- Product List -->
 <div class="row mt-4">
   <div class="col-6">
     <div class="mb-3">
@@ -12,6 +11,8 @@
           type="text"
           class="form-control form-control-lg"
           placeholder="Buscar Producto"
+          bind:value={search}
+          on:input
         />
       </div>
       <div class="form-text">Ingresa o escanea el código del producto</div>
@@ -30,20 +31,3 @@
     </div>
   </div>
 </div>
-
-<div class="col-12">
-  <div class="row">
-    {#each productList as { name, stock }, index}
-      <div class="col-4 mt-4">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">{(index + 1)} {name}</h6>
-            <p class="card-text text-muted">{stock}</p>
-          </div>
-        </div>
-      </div>
-    {/each}
-  </div>
-</div>
-
-<!-- Product List -->
