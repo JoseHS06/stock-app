@@ -5,7 +5,7 @@ const app = express();
 app.listen(3000);
 
 
-app.get('/getData', async (req, res) => {
+app.get('/addProduct', async (req, res) => {
 
     const result = await cnn.query('SELECT 1 + 1 AS result');
     res.json(result[0]);

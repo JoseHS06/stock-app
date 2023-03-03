@@ -6,15 +6,15 @@
   import AddInventory from "./components/Add-Inventory.svelte";
   import Pagination from "./components/Pagination.svelte";
 
+
   let currentProducts = [];
   let filteredProducts = [];
 
   let page = 0;
   let totalPages = [];
   let currentPageRows = [];
-  let itemsPerPage = 2;
+  let itemsPerPage = 3;
   let productId = 0;
-
 
   $: currentPageRows = totalPages.length > 0 ? totalPages[page] : [];
   $: disabledLast = (page + 1) == totalPages.length  ? 'disabled' : ''
@@ -66,12 +66,11 @@
     const { id } = e.detail;
     productId = id;
   }
+
 </script>
 
 <main class="container">
   <Header on:input={searchProduct} />
-
-
   <div class="col-12">
     <div class="row">
       {#each currentPageRows as { id, name, stock }, index}
