@@ -1,18 +1,22 @@
 {
     "products":[
         {
+            "id": 1,
             "name": "Laptop Notebook HP",
             "stock": 30
         },
         {
+            "id": 2,
             "name": "Mouse HP",
             "stock": 10
         },
         {
+            "id": 3,
             "name": "Consola XBOX",
             "stock": 30
         },
         {
+            "id": 4,
             "name": "Teclado RGB",
             "stock": 10
         }

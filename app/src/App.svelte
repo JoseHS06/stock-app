@@ -1,10 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import { getProducts } from "./middleware";
+  import { addStock, getProducts } from "./app";
   import Header from "./components/Header.svelte";
   import Product from "./components/Product.svelte";
   import AddInventory from "./components/Add-Inventory.svelte";
-  import AddProduct from "./components/Add-Product.svelte";
   import Pagination from "./components/Pagination.svelte";
 
   let currentProducts = [];
@@ -14,6 +13,9 @@
   let totalPages = [];
   let currentPageRows = [];
   let itemsPerPage = 2;
+  let productId = 0;
+
+
   $: currentPageRows = totalPages.length > 0 ? totalPages[page] : [];
   $: disabledLast = (page + 1) == totalPages.length  ? 'disabled' : ''
   $: disabledFirst = (page + 1) == 1 ? 'disabled' : ''
@@ -59,6 +61,11 @@
       page = p;
     }
   };
+
+  const updateStock = (e) =>{
+    const { id } = e.detail;
+    productId = id;
+  }
 </script>
 
 <main class="container">
@@ -67,13 +74,12 @@
 
   <div class="col-12">
     <div class="row">
-      {#each currentPageRows as { name, stock }, index}
-        <Product {name} {stock} />
+      {#each currentPageRows as { id, name, stock }, index}
+        <Product {id} {name} {stock} on:updateInventory={updateStock}/>
       {/each}
     </div>
   </div>
 
   <Pagination {page} {totalPages} {disabledLast} {disabledFirst} {setPage} />
-  <AddInventory />
-  <AddProduct />
+  <AddInventory {productId}/>
 </main>

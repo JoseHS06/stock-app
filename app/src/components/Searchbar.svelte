@@ -1,4 +1,5 @@
 <script>
+    import AddProduct from "./Add-Product.svelte";
     let search = '';
 </script>
 
@@ -31,3 +32,6 @@
     </div>
   </div>
 </div>
+
+
+<AddProduct/>
