@@ -7,7 +7,16 @@
         {
             "name": "Mouse HP",
             "stock": 10
+        },
+        {
+            "name": "Consola XBOX",
+            "stock": 30
+        },
+        {
+            "name": "Teclado RGB",
+            "stock": 10
         }
+
 
     ]
 }
