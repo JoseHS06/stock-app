@@ -24,7 +24,7 @@
       <button
         type="button"
         class="btn btn-lg btn-primary"
-        style="background-color: #05c46b; border-color:  #05c46b"
+        style="background-color: #82589F; border-color:  #82589F"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNewProduct"
         ><i class="bi bi-plus-circle-fill" /> Agregar Producto</button

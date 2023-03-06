@@ -5,7 +5,7 @@
   
   <div
     class="d-flex align-items-center p-3 my-3 text-white rounded shadow"
-    style="background-color: #05c46b"
+    style="background-color: #82589F"
   >
     <div style="width: 42px; height: 42px">
       <i class="bi bi-box-fill mr-2" style="font-size: 30px;" />
