@@ -4,7 +4,7 @@
 </script>
 
 <div class="row mt-4">
-  <div class="col-6">
+  <div class="col-lg-6 col-sm-12">
     <div class="mb-3">
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-search" /></span>
@@ -19,7 +19,7 @@
       <div class="form-text">Ingresa o escanea el código del producto</div>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-lg-6 col-sm-12">
     <div class="mb-3 d-flex justify-content-end">
       <button
         type="button"

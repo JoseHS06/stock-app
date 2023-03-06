@@ -4,18 +4,26 @@
   let product = {
     code: "",
     name: "",
-    stock: 0,
+    stock: "",
   };
 
   $: alertContent = "";
   $: isShowAlert = alertContent != "" ? "show" : "";
+
+  const isNumber = (val) => !isNaN(val);
+
+  const handleInput = (e) => {
+    if (isNumber(e.target.value)) {
+      product.stock = e.target.value;
+    }
+  };
 
   const saveProduct = async () => {
     if (!product.code.trim()) {
       alertContent = "No se ha ingresado el código";
     } else if (!product.name.trim()) {
       alertContent = "No se ha ingresado la descripción";
-    } else if (product.stock == 0) {
+    } else if (product.stock == "") {
       alertContent = "No se ha ingresado la cantidad";
     } else {
       alertContent = "";
@@ -23,7 +31,6 @@
       const { data, status } = response;
     }
   };
-
 </script>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNewProduct">
@@ -70,9 +77,11 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
       <input
         class="form-control w-75 mt-3"
-        type="text"
+        type="number"
         placeholder="Cantidad"
         bind:value={product.stock}
+        on:input|preventDefault={handleInput}
+        minlength="1"
       />
     </div>
 
@@ -87,7 +96,7 @@
         ><i class="bi bi-check-circle-fill" /> Registrar Producto</button
       >
 
-      <div class="w-75 alert alert-danger fade {isShowAlert}" role="alert">
+      <div class="w-75 alert alert-warning fade {isShowAlert}" role="alert">
         <small>{alertContent}</small>
       </div>
     </div>

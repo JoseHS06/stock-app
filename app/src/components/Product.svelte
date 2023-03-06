@@ -15,7 +15,7 @@
 </script>
 
 
-<div class="col-4 mt-4">
+<div class="col-lg-4 col-sm-12 mt-4">
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div data-bs-toggle="offcanvas" data-bs-target="#offcanvasInventory"  on:click={updateInventory}  class="card" style="cursor: pointer;">
     <div class="card-body">

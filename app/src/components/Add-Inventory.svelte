@@ -3,16 +3,24 @@
 
   export let productId;
   $: activeTab = 1;
-  $: stock = 0;
+  $: stock = "";
   $: alertContent = "";
 
+  const isNumber = (val) => !isNaN(val);
+
+  const handleInput = (e) => {
+    if (isNumber(e.target.value)) {
+      stock = e.target.value;
+    } 
+  };
+
   const updateInventory = async (type) => {
-    if (stock == 0) {
+    if (stock == "") {
       alertContent = "No se ha ingresado la cantidad";
       return;
     }
 
-    alertContent = "";
+      alertContent = "";
 
     if (type == 1) {
       const response = await addStock(productId, stock);
@@ -24,12 +32,10 @@
   };
 
   const initTab = (tab) => {
-
     activeTab = tab;
     alertContent = "";
-    stock = 0;
-
-  }
+    stock = "";
+  };
 </script>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasInventory">
@@ -113,9 +119,12 @@
         >
           <input
             class="form-control w-75 mt-4"
-            type="text"
+            type="number"
             placeholder="Cantidad"
             bind:value={stock}
+            on:input|preventDefault={handleInput}
+            minlength="1"
+            maxlength="10"
           />
         </div>
 
@@ -130,11 +139,15 @@
             ><i class="bi bi-arrow-down-circle-fill" /> Registrar Entrada</button
           >
 
-          <div class="w-75 alert alert-warning fade {activeTab ==  1 && alertContent != "" ? 'show' : ''}" role="alert">
+          <div
+            class="w-75 alert alert-warning fade {stock == "" && activeTab == 1 &&
+            alertContent != ''
+              ? 'show'
+              : ''}"
+            role="alert"
+          >
             <small>{alertContent}</small>
           </div>
-
-          
         </div>
       </div>
 
@@ -167,9 +180,12 @@
         >
           <input
             class="form-control w-75 mt-4"
-            type="text"
+            type="number"
             placeholder="Cantidad"
             bind:value={stock}
+            on:input|preventDefault={handleInput}
+            minlength="1"
+            maxlength="10"
           />
         </div>
 
@@ -184,10 +200,15 @@
             ><i class="bi bi-arrow-up-circle-fill" /> Registrar Salida</button
           >
 
-          <div class="w-75 alert alert-warning fade {activeTab == 2 && alertContent != "" ? 'show' : ''}" role="alert">
+          <div
+            class="w-75 alert alert-warning fade {stock == "" && activeTab == 2 &&
+            alertContent != ''
+              ? 'show'
+              : ''}"
+            role="alert"
+          >
             <small>{alertContent}</small>
           </div>
-
         </div>
       </div>
     </div>
