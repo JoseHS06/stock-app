@@ -130,10 +130,11 @@
             ><i class="bi bi-arrow-down-circle-fill" /> Registrar Entrada</button
           >
 
-          <div class="w-75 alert alert-danger fade {activeTab ==  1 && alertContent != "" ? 'show' : ''}" role="alert">
+          <div class="w-75 alert alert-warning fade {activeTab ==  1 && alertContent != "" ? 'show' : ''}" role="alert">
             <small>{alertContent}</small>
           </div>
 
+          
         </div>
       </div>
 
@@ -183,7 +184,7 @@
             ><i class="bi bi-arrow-up-circle-fill" /> Registrar Salida</button
           >
 
-          <div class="w-75 alert alert-danger fade {activeTab == 2 && alertContent != "" ? 'show' : ''}" role="alert">
+          <div class="w-75 alert alert-warning fade {activeTab == 2 && alertContent != "" ? 'show' : ''}" role="alert">
             <small>{alertContent}</small>
           </div>
 
