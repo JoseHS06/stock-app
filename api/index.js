@@ -1,9 +1,8 @@
-import express, { query } from "express";
+import express from "express";
 import { conexion } from './db/db.js';
 
 const app = express();
 app.listen(3000);
-
 
 app.get('/addProduct', async (req, res) => {
 
@@ -21,34 +20,18 @@ app.get('/addProduct', async (req, res) => {
     }
 });
 
-app.get('/addStock', async (req, res) => {
+app.get('/updateStock', async (req, res) => {
 
     try {
 
-        const { id, stock } = req.body;
-        const [rows] = await conexion.query('', [id, stock]);
+        const { action, id, stock } = req.body;
+        const [rows] = await conexion.query('', [action, id, stock]);
 
         return res.status(200).json({ message: 'Stock actualizado correctamente ' });
 
     } catch (error) {
 
         return res.status(300).json({ message: 'Ocurrió un error al agregar el stock' });
-
-    }
-});
-
-app.get('/removeStock', async (req, res) => {
-
-    try {
-
-        const { id, stock } = req.body;
-        const [rows] = await conexion.query('', [id, stock]);
-
-        return res.status(200).json({ message: 'Stock actualizado correctamente ' });
-
-    } catch (error) {
-
-        return res.status(300).json({ message: 'Ocurrió un error al eliminar el stock' });
 
     }
 });
