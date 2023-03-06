@@ -32,7 +32,7 @@ const addProduct = async (product) => {
     } catch (error) { }
 };
 
-const addStock = async () => {
+const addStock = async (id, stock) => {
     try {
         const response = await fetch("http://localhost/addStock", {
             method: "POST",
@@ -51,7 +51,7 @@ const addStock = async () => {
     } catch (error) { }
 };
 
-const removeStock = async () => {
+const removeStock = async (id, stock) => {
     try {
         const response = await fetch("http://localhost/removeStock", {
             method: "POST",

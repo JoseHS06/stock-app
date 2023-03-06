@@ -1,6 +1,7 @@
 <script>
+  import { Toast } from "bootstrap";
   import { onMount } from "svelte";
-  import { addStock, getProducts } from "./app";
+  import { getProducts } from "./app";
   import Header from "./components/Header.svelte";
   import Product from "./components/Product.svelte";
   import AddInventory from "./components/Add-Inventory.svelte";
@@ -15,10 +16,9 @@
   let itemsPerPage = 2;
   let productId = 0;
 
-
   $: currentPageRows = totalPages.length > 0 ? totalPages[page] : [];
-  $: disabledLast = (page + 1) == totalPages.length  ? 'disabled' : ''
-  $: disabledFirst = (page + 1) == 1 ? 'disabled' : ''
+  $: disabledLast = page + 1 == totalPages.length ? "disabled" : "";
+  $: disabledFirst = page + 1 == 1 ? "disabled" : "";
 
   onMount(async () => {
     currentProducts = await getProducts();
@@ -62,24 +62,24 @@
     }
   };
 
-  const updateStock = (e) =>{
+  const updateStock = (e) => {
     const { id } = e.detail;
     productId = id;
-  }
+  };
+
 </script>
 
 <main class="container">
   <Header on:input={searchProduct} />
 
-
   <div class="col-12">
     <div class="row">
       {#each currentPageRows as { id, name, stock }, index}
-        <Product {id} {name} {stock} on:updateInventory={updateStock}/>
+        <Product {id} {name} {stock} on:updateInventory={updateStock} />
       {/each}
     </div>
   </div>
 
   <Pagination {page} {totalPages} {disabledLast} {disabledFirst} {setPage} />
-  <AddInventory {productId}/>
+  <AddInventory {productId} />
 </main>

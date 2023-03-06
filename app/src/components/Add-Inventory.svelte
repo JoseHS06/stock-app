@@ -1,11 +1,35 @@
 <script>
-  export let productId;
-  let stock = 0;
+  import { addStock, removeStock } from "../app";
 
-  const updateInventory = (type) => {
-    console.log({type, productId, stock})
+  export let productId;
+  $: activeTab = 1;
+  $: stock = 0;
+  $: alertContent = "";
+
+  const updateInventory = async (type) => {
+    if (stock == 0) {
+      alertContent = "No se ha ingresado la cantidad";
+      return;
+    }
+
+    alertContent = "";
+
+    if (type == 1) {
+      const response = await addStock(productId, stock);
+      const { data, status } = response;
+    } else {
+      const response = await removeStock(productId, stock);
+      const { data, status } = response;
+    }
+  };
+
+  const initTab = (tab) => {
+
+    activeTab = tab;
+    alertContent = "";
+    stock = 0;
+
   }
-  
 </script>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasInventory">
@@ -26,6 +50,7 @@
     >
       <li class="nav-item rounded-2 w-50" role="presentation">
         <button
+          on:click={() => initTab(1)}
           class="nav-link active"
           id="pills-entrances-tab"
           data-bs-toggle="pill"
@@ -40,6 +65,7 @@
       </li>
       <li class="nav-item rounded-2 w-50" role="presentation">
         <button
+          on:click={() => initTab(2)}
           class="nav-link"
           id="pills-exits-tab"
           data-bs-toggle="pill"
@@ -57,7 +83,6 @@
     <div
       class="tab-content d-flex flex-column justify-content-center"
       id="pills-tabContent"
-      style="height: 50vh"
     >
       <div
         class="tab-pane fade show active"
@@ -95,15 +120,20 @@
         </div>
 
         <div
-          class="row d-flex flex-column justify-content-center align-items-center h-50"
+          class="d-flex flex-column justify-content-center align-items-center mt-4"
         >
           <button
-            on:click={() => updateInventory('add')}
-            class="w-75 btn btn-primary btn-lg"
+            on:click={() => updateInventory(1)}
+            class="w-75 btn btn-primary btn-lg mb-4"
             type="button"
             style="background-color: #130f40; border-color:  #130f40"
             ><i class="bi bi-arrow-down-circle-fill" /> Registrar Entrada</button
           >
+
+          <div class="w-75 alert alert-danger fade {activeTab ==  1 && alertContent != "" ? 'show' : ''}" role="alert">
+            <small>{alertContent}</small>
+          </div>
+
         </div>
       </div>
 
@@ -143,15 +173,20 @@
         </div>
 
         <div
-          class="row d-flex flex-column justify-content-center align-items-center h-50"
+          class="d-flex flex-column justify-content-center align-items-center mt-4"
         >
           <button
-            on:click={() => updateInventory('remove')}
-            class="w-75 btn btn-primary btn-lg"
+            on:click={() => updateInventory(2)}
+            class="w-75 btn btn-primary btn-lg mb-4"
             type="button"
             style="background-color: #130f40; border-color:  #130f40"
             ><i class="bi bi-arrow-up-circle-fill" /> Registrar Salida</button
           >
+
+          <div class="w-75 alert alert-danger fade {activeTab == 2 && alertContent != "" ? 'show' : ''}" role="alert">
+            <small>{alertContent}</small>
+          </div>
+
         </div>
       </div>
     </div>
