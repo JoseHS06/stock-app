@@ -7,13 +7,14 @@
   import AddInventory from "./components/Add-Inventory.svelte";
   import Pagination from "./components/Pagination.svelte";
 
+
   let currentProducts = [];
   let filteredProducts = [];
 
   let page = 0;
   let totalPages = [];
   let currentPageRows = [];
-  let itemsPerPage = 2;
+  let itemsPerPage = 3;
   let productId = 0;
 
   $: currentPageRows = totalPages.length > 0 ? totalPages[page] : [];
