@@ -27,7 +27,23 @@
         style="background-color: #f0932b; border-color:  #f0932b"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNewProduct"
-        ><i class="bi bi-plus-circle-fill" /> Agregar Producto</button
+        ><i class="bi bi-plus-circle-fill" /> Entradas</button
+      >
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="background-color: #f0932b; border-color:  #f0932b"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNewProduct"
+        ><i class="bi bi-plus-circle-fill" /> Salidas</button
+      >
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="background-color: #f0932b; border-color:  #f0932b"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNewProduct"
+        ><i class="bi bi-plus-circle-fill" /> Nuevo Producto</button
       >
     </div>
   </div>
