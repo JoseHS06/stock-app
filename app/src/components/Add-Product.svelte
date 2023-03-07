@@ -35,13 +35,16 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNewProduct">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Registrar Producto</h5>
+    <h5 class="offcanvas-title text-white">Registrar Producto</h5>
+
     <button
       type="button"
-      class="btn-close"
+      class="btn btn-danger"
+      style="color: #ffffff; border-radius: 100%; width: 40px; height: 40px; 
+      background: #1c1f25 !important;
+      border-color: #1c1f25;"
       data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    />
+      aria-label="Close">X</button>
   </div>
   <div class="offcanvas-body">
     <div
@@ -91,7 +94,7 @@
       <button
         class="w-75 btn btn-primary btn-lg mb-4"
         type="button"
-        style="background-color: #130f40; border-color:  #130f40"
+        style="background-color: #f0932b; border-color:  #f0932b"
         on:click={() => saveProduct()}
         ><i class="bi bi-check-circle-fill" /> Registrar Producto</button
       >

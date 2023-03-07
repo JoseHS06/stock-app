@@ -14,7 +14,7 @@
   let page = 0;
   let totalPages = [];
   let currentPageRows = [];
-  let itemsPerPage = 3;
+  let itemsPerPage = 6;
   let productId = 0;
 
   $: currentPageRows = totalPages.length > 0 ? totalPages[page] : [];

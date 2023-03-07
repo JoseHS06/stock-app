@@ -11,7 +11,7 @@
   const handleInput = (e) => {
     if (isNumber(e.target.value)) {
       stock = e.target.value;
-    } 
+    }
   };
 
   const updateInventory = async (type) => {
@@ -20,7 +20,7 @@
       return;
     }
 
-      alertContent = "";
+    alertContent = "";
 
     if (type == 1) {
       const response = await addStock(productId, stock);
@@ -40,13 +40,16 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasInventory">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Inventario</h5>
+    <h5 class="offcanvas-title text-white">Inventario</h5>
     <button
       type="button"
-      class="btn-close"
+      class="btn btn-danger"
+      style="color: #ffffff; border-radius: 100%; width: 40px; height: 40px; 
+    background: #1c1f25 !important;
+    border-color: #1c1f25;"
       data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    />
+      aria-label="Close">X</button
+    >
   </div>
   <div class="offcanvas-body">
     <ul
@@ -66,7 +69,7 @@
           aria-controls="pills-entrances"
           aria-selected="true"
           style=" border-radius: 30px"
-          ><i class="bi bi-arrow-down-circle-fill" /> Registrar Entrada</button
+          ><i class="bi bi-arrow-down-circle-fill" /> Nueva Entrada</button
         >
       </li>
       <li class="nav-item rounded-2 w-50" role="presentation">
@@ -81,7 +84,7 @@
           aria-controls="pills-exits"
           aria-selected="false"
           style="border-radius: 30px"
-          ><i class="bi bi-arrow-up-circle-fill" /> Registrar Salida</button
+          ><i class="bi bi-arrow-up-circle-fill" /> Nueva Salida</button
         >
       </li>
     </ul>
@@ -135,12 +138,13 @@
             on:click={() => updateInventory(1)}
             class="w-75 btn btn-primary btn-lg mb-4"
             type="button"
-            style="background-color: #130f40; border-color:  #130f40"
+            style="background-color: #f0932b; border-color:  #f0932b"
             ><i class="bi bi-arrow-down-circle-fill" /> Registrar Entrada</button
           >
 
           <div
-            class="w-75 alert alert-warning fade {stock == "" && activeTab == 1 &&
+            class="w-75 alert alert-warning fade {stock == '' &&
+            activeTab == 1 &&
             alertContent != ''
               ? 'show'
               : ''}"
@@ -196,12 +200,13 @@
             on:click={() => updateInventory(2)}
             class="w-75 btn btn-primary btn-lg mb-4"
             type="button"
-            style="background-color: #130f40; border-color:  #130f40"
+            style="background-color: #f0932b; border-color:  #f0932b"
             ><i class="bi bi-arrow-up-circle-fill" /> Registrar Salida</button
           >
 
           <div
-            class="w-75 alert alert-warning fade {stock == "" && activeTab == 2 &&
+            class="w-75 alert alert-warning fade {stock == '' &&
+            activeTab == 2 &&
             alertContent != ''
               ? 'show'
               : ''}"

@@ -10,7 +10,7 @@
         <span class="input-group-text"><i class="bi bi-search" /></span>
         <input
           type="text"
-          class="form-control form-control-lg"
+          class="form-control"
           placeholder="Buscar Producto"
           bind:value={search}
           on:input
@@ -23,8 +23,8 @@
     <div class="mb-3 d-flex justify-content-end">
       <button
         type="button"
-        class="btn btn-lg btn-primary"
-        style="background-color: #82589F; border-color:  #82589F"
+        class="btn btn-primary"
+        style="background-color: #f0932b; border-color:  #f0932b"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNewProduct"
         ><i class="bi bi-plus-circle-fill" /> Agregar Producto</button
