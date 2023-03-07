@@ -20,7 +20,7 @@
   <div data-bs-toggle="offcanvas" data-bs-target="#offcanvasInventory" on:click={updateInventory}  class="card" style="cursor: pointer; background-color: #13161b">
     <div class="card-body">
       <h6 class="card-title text-white">{name}</h6>
-      <p class="card-text text-muted text-white">Stock: {stock}</p>
+      <p class="card-text text-muted text-white"><span class="badge text-bg-success">Stock: {stock}</span></p>
     </div>
   </div>
 </div>

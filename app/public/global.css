@@ -23,7 +23,7 @@ body {
 
 .active > .page-link,
 .page-link.active {
-  color: #35c2de !important;
+  color: #f0932b !important;
   background-color: #1c1f25 !important;
   border-color: #1c1f25 !important;
 }

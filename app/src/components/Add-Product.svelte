@@ -44,7 +44,7 @@
       background: #1c1f25 !important;
       border-color: #1c1f25;"
       data-bs-dismiss="offcanvas"
-      aria-label="Close">X</button>
+      aria-label="Close"><i class="bi bi-x-lg"></i></button>
   </div>
   <div class="offcanvas-body">
     <div
@@ -52,7 +52,7 @@
     >
       <div
         class="rounded-circle d-flex flex-column justify-content-center align-items-center"
-        style="width: 120px; height: 120px; background-color: rgb(19 15 64 / 5%)"
+        style="width: 120px; height: 120px; background-color: rgb(28 31 37 / 32%)"
       >
         <img src="https://img.icons8.com/fluency/80/box.png" alt="" />
       </div>

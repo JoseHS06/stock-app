@@ -6,6 +6,7 @@
   import Product from "./components/Product.svelte";
   import AddInventory from "./components/Add-Inventory.svelte";
   import Pagination from "./components/Pagination.svelte";
+  import NotFound from "./components/Not-Found.svelte";
 
 
   let currentProducts = [];
@@ -72,7 +73,6 @@
 
 <main class="container">
   <Header on:input={searchProduct} />
-
   <div class="col-12">
     <div class="row">
       {#each currentPageRows as { id, name, stock }, index}
@@ -80,7 +80,7 @@
       {/each}
     </div>
   </div>
-
+  <NotFound {currentPageRows} />
   <Pagination {page} {totalPages} {disabledLast} {disabledFirst} {setPage} />
   <AddInventory {productId} />
 </main>

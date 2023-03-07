@@ -1,9 +1,10 @@
 <script>
   export let totalPages, page, disabledLast, disabledFirst , setPage;
 
+  $: isVisible =  totalPages.length == 0 ? 'd-none' : '';
 </script>
 
-<ul class="pagination mt-4">
+<ul class="pagination mt-4 {isVisible}">
   <li class="page-item">
     <button
       type="button"
