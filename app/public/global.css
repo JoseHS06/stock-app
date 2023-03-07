@@ -21,6 +21,12 @@ body {
   border-color: #13161b !important;
 }
 
+.page-link {
+  color: #f0932b !important;
+  background-color: #12161b !important;
+  border: var(--bs-pagination-border-width) solid #12161b !important;
+}
+
 .active > .page-link,
 .page-link.active {
   color: #f0932b !important;
