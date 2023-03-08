@@ -69,3 +69,10 @@ body {
 .offcanvas {
   background-color: #0d0e12 !important;
 }
+
+
+.list-group-item {
+  color: #ffffff !important;
+  background-color: #212529 !important;
+  border: 1px solid #343a40 !important;
+}

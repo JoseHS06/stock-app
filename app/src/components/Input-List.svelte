@@ -2,10 +2,12 @@
   class="offcanvas offcanvas-bottom"
   tabindex="-1"
   id="offcanvasInputs"
-  style="height: 65vh;"
+  style="height: 100vh;"
 >
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title text-white text-center">Entradas de inventario</h5>
+    <h5 class="offcanvas-title text-white text-center">
+      Entradas de inventario
+    </h5>
     <button
       type="button"
       class="btn btn-danger"
@@ -17,30 +19,30 @@
     >
   </div>
   <div class="offcanvas-body small">
-    <table class="table table-bordered table-dark">
-      <thead>
-        <tr>
-          <th scope="col">Código</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Cantidad</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-            <th scope="row">1WQH</th>
-            <td>Consola XBOX</td>
-            <td>08/03/2023</td>
-            <td>5</td>
-          </tr>
-          <tr>
-            <th scope="row">1WQH</th>
-            <td>Consola XBOX</td>
-            <td>07/03/2023</td>
-            <td>5</td>
-          </tr>
-        
-      </tbody>
-    </table>
+    <div class="container d-flex justify-content-center">
+      <div class="col-6">
+        <ol class="list-group list-group-numbered">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Subheading</div>
+              Content for list item
+            </div>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Subheading</div>
+              Content for list item
+            </div>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+
+        </ol>
+      </div>
+    </div>
   </div>
 </div>
