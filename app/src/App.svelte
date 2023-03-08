@@ -7,7 +7,8 @@
   import AddInventory from "./components/Add-Inventory.svelte";
   import Pagination from "./components/Pagination.svelte";
   import NotFound from "./components/Not-Found.svelte";
-
+  import InputList from "./components/Input-List.svelte";
+  import OutputList from "./components/Output-List.svelte";
 
   let currentProducts = [];
   let filteredProducts = [];
@@ -15,7 +16,7 @@
   let page = 0;
   let totalPages = [];
   let currentPageRows = [];
-  let itemsPerPage = 6;
+  let itemsPerPage = 12;
   let productId = 0;
 
   $: currentPageRows = totalPages.length > 0 ? totalPages[page] : [];
@@ -83,4 +84,6 @@
   <NotFound {currentPageRows} />
   <Pagination {page} {totalPages} {disabledLast} {disabledFirst} {setPage} />
   <AddInventory {productId} />
+  <InputList/>
+  <OutputList/>
 </main>

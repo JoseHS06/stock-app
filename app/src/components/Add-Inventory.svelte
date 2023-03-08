@@ -136,7 +136,7 @@
             on:click={() => updateInventory(1)}
             class="w-75 btn btn-primary btn-lg mb-4"
             type="button"
-            style="background-color: #f0932b; border-color:  #f0932b"
+            style="background-color: #5865f2; border-color:  #5865f2"
             ><i class="bi bi-arrow-down-circle-fill" /> Registrar Entrada</button
           >
 
@@ -198,7 +198,7 @@
             on:click={() => updateInventory(2)}
             class="w-75 btn btn-primary btn-lg mb-4"
             type="button"
-            style="background-color: #f0932b; border-color:  #f0932b"
+            style="background-color: #5865f2; border-color:  #5865f2"
             ><i class="bi bi-arrow-up-circle-fill" /> Registrar Salida</button
           >
 

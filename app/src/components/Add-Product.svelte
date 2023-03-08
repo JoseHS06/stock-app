@@ -86,15 +86,27 @@
         on:input|preventDefault={handleInput}
         minlength="1"
       />
+      <span class="form-text" style="font-size: 10px;">Cantidad con la que se registra el producto en el inventario.</span>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <input
+        class="form-control w-75 mt-3"
+        type="number"
+        placeholder="Cantidad Mínima"
+        bind:value={product.stock}
+        on:input|preventDefault={handleInput}
+        minlength="1"
+      />
+      <span class="form-text" style="font-size: 10px;">Cantidad mínima que debe tener el producto en el inventario.</span>
     </div>
 
     <div
-      class="d-flex flex-column justify-content-center align-items-center mt-3"
+      class="d-flex flex-column justify-content-center align-items-center mt-4"
     >
       <button
         class="w-75 btn btn-primary btn-lg mb-4"
         type="button"
-        style="background-color: #f0932b; border-color:  #f0932b"
+        style="background-color: #5865f2; border-color:  #5865f2"
         on:click={() => saveProduct()}
         ><i class="bi bi-check-circle-fill" /> Registrar Producto</button
       >

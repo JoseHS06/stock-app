@@ -22,14 +22,14 @@ body {
 }
 
 .page-link {
-  color: #f0932b !important;
+  color: #FFFFFF !important;
   background-color: #12161b !important;
   border: var(--bs-pagination-border-width) solid #12161b !important;
 }
 
 .active > .page-link,
 .page-link.active {
-  color: #f0932b !important;
+  color: #5865f2 !important;
   background-color: #1c1f25 !important;
   border-color: #1c1f25 !important;
 }
