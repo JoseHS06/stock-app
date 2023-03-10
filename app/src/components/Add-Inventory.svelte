@@ -1,5 +1,5 @@
 <script>
-  import { addStock, removeStock } from "../app";
+  import { updateStock } from "../app";
 
   export let productId;
   $: activeTab = 1;
@@ -23,10 +23,10 @@
     alertContent = "";
 
     if (type == 1) {
-      const response = await addStock(productId, stock);
+      const response = await updateStock(1, productId, stock);
       const { data, status } = response;
     } else {
-      const response = await removeStock(productId, stock);
+      const response = await updateStock(2, productId, stock);
       const { data, status } = response;
     }
   };

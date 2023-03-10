@@ -24,8 +24,10 @@
   $: disabledFirst = page + 1 == 1 ? "disabled" : "";
 
   onMount(async () => {
-    currentProducts = await getProducts();
-    filteredProducts = await getProducts();
+    const { data } =  await getProducts();
+    currentProducts = data;
+    filteredProducts = data;
+    console.log(data);
     paginate(filteredProducts);
   });
 
@@ -76,7 +78,7 @@
   <Header on:input={searchProduct} />
   <div class="col-12">
     <div class="row">
-      {#each currentPageRows as { id, name, stock }, index}
+      {#each currentPageRows as { id, product_name: name, total: stock }, index}
         <Product {id} {name} {stock} on:updateInventory={updateStock} />
       {/each}
     </div>
