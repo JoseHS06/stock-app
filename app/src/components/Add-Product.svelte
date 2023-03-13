@@ -1,10 +1,11 @@
 <script>
+  import Swal from "sweetalert2";
   import { addProduct } from "../app";
 
   let product = {
     code: "",
     name: "",
-    stock: "",
+    stock_minimum: "",
   };
 
   $: alertContent = "";
@@ -12,9 +13,9 @@
 
   const isNumber = (val) => !isNaN(val);
 
-  const handleInput = (e) => {
+  const handleMinimumStock = (e) => {
     if (isNumber(e.target.value)) {
-      product.stock = e.target.value;
+      product.stock_minimum = e.target.value;
     }
   };
 
@@ -23,12 +24,25 @@
       alertContent = "No se ha ingresado el código";
     } else if (!product.name.trim()) {
       alertContent = "No se ha ingresado la descripción";
-    } else if (product.stock == "") {
-      alertContent = "No se ha ingresado la cantidad";
+    } else if (product.stock_minimum == "") {
+      alertContent = "No se ha ingresado la cantidad mínima";
     } else {
       alertContent = "";
       const response = await addProduct(product);
-      const { data, status } = response;
+      const { status } = response;
+
+      if (status == 200) {
+        Swal.fire({
+          title: "Producto Agregado",
+          text: "El producto ha sido agregado con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+             
+          }
+        });
+      }
     }
   };
 </script>
@@ -44,7 +58,8 @@
       background: #1c1f25 !important;
       border-color: #1c1f25;"
       data-bs-dismiss="offcanvas"
-      aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      aria-label="Close"><i class="bi bi-x-lg" /></button
+    >
   </div>
   <div class="offcanvas-body">
     <div
@@ -73,7 +88,7 @@
       <textarea
         class="form-control w-75 mt-3"
         type="text"
-        placeholder="Descripción"
+        placeholder="Nombre del Producto"
         bind:value={product.name}
       />
     </div>
@@ -81,23 +96,14 @@
       <input
         class="form-control w-75 mt-3"
         type="number"
-        placeholder="Cantidad"
-        bind:value={product.stock}
-        on:input|preventDefault={handleInput}
-        minlength="1"
-      />
-      <span class="form-text" style="font-size: 10px;">Cantidad con la que se registra el producto en el inventario.</span>
-    </div>
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <input
-        class="form-control w-75 mt-3"
-        type="number"
         placeholder="Cantidad Mínima"
-        bind:value={product.stock}
-        on:input|preventDefault={handleInput}
+        bind:value={product.stock_minimum}
+        on:input|preventDefault={handleMinimumStock}
         minlength="1"
       />
-      <span class="form-text" style="font-size: 10px;">Cantidad mínima que debe tener el producto en el inventario.</span>
+      <span class="form-text" style="font-size: 10px;"
+        >Cantidad mínima que debe tener el producto en el inventario.</span
+      >
     </div>
 
     <div

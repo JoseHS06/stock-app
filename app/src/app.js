@@ -1,73 +1,140 @@
 
-
 const getProducts = async () => {
     try {
-        const response = await fetch("/api.json").then((res) => res.json());
-        const { products } = await response;
+   
+        const response = await fetch("http://localhost:3000/getLog/0", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": '*',
+            }
+        }).then((res) => res.json());
 
-        return products;
+        const { status, data } = response;
+
+        if(status == 200){
+
+            return {
+                status,
+                message: 'Listado de productos obtenido con éxito',
+                data
+            }
+        }
+
     } catch (error) {
-        console.warn("Ocurrió un error al obtener los productos.");
-    }
+        console.warn('Ocurrió un error al registrar el producto ' + error);
+     }
 };
+
+
+const getInputs = async () => {
+    try {
+   
+        const response = await fetch("http://localhost:3000/getLog/1", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": '*',
+            }
+        }).then((res) => res.json());
+
+        const { status } = response;
+
+        if(status == 200) {
+            return {
+                status: 200,
+                message: 'Listado de entradas obtenido con éxito'
+            }
+        }
+
+    } catch (error) {
+        console.warn('Ocurrió un error al registrar el producto ' + error);
+     }
+};
+
+const getOutputs = async () => {
+    try {
+   
+        const response = await fetch("http://localhost:3000/getLog/1", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": '*',
+            }
+        }).then((res) => res.json());
+
+        const { status } = response;
+
+        console.log(status);
+    } catch (error) {
+        console.warn('Ocurrió un error al registrar el producto ' + error);
+     }
+};
+
 
 const addProduct = async (product) => {
     try {
-        const {code, name, stock} = product;
-        const response = await fetch("http://localhost/addProduct", {
+        const {code, name, stock, stock_minimum} = product;
+        const response = await fetch("http://localhost:3000/addProduct", {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": '*',
             },
             body: JSON.stringify({
                 code,
                 name, 
                 stock,
+                stock_minimum
             }),
         }).then((res) => res.json());
 
-        const { data, status } = await response;
+        const { status } = response;
 
-        console.log(data);
-    } catch (error) { }
+        if(status == 200){
+            
+            return {
+                status: 200,
+                message: 'Producto agregado con éxito'
+            };
+        }
+
+        
+    } catch (error) {
+        console.warn('Ocurrió un error al registrar el producto ' + error);
+     }
 };
 
-const addStock = async (id, stock) => {
+const updateStock = async (action, id, stock) => {
     try {
-        const response = await fetch("http://localhost/addStock", {
+        const response = await fetch("http://localhost:3000/updateStock", {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": '*',
             },
             body: JSON.stringify({
-                id: "",
-                stock: "",
+                action,
+                id,
+                stock,
             }),
         }).then((res) => res.json());
 
-        const { data, status } = await response;
+        const { status } = response;
 
-        console.log(data);
-    } catch (error) { }
+        if(status == 200){
+
+            return {
+                status,
+                message: 'Stock actualizado con éxito'
+            }
+        }
+
+    } catch (error) { 
+        console.warn('Ocurrió un error al actualizar el stock' + error);
+    }
 };
 
-const removeStock = async (id, stock) => {
-    try {
-        const response = await fetch("http://localhost/removeStock", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify({
-                id: "",
-                stock: "",
-            }),
-        }).then((res) => res.json());
 
-        const { data, status } = await response;
 
-        console.log(data);
-    } catch (error) { }
-};
-
-export { getProducts, addProduct, addStock, removeStock }
+export { getProducts, addProduct, updateStock, getInputs, getOutputs}
