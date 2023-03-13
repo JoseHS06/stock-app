@@ -9,6 +9,7 @@
   import NotFound from "./components/Not-Found.svelte";
   import InputList from "./components/Input-List.svelte";
   import OutputList from "./components/Output-List.svelte";
+  import Datatable from "./components/datatable.svelte";
 
   let currentProducts = [];
   let filteredProducts = [];
@@ -86,4 +87,5 @@
   <AddInventory {productId} />
   <InputList/>
   <OutputList/>
+  <Datatable/>
 </main>
