@@ -1,7 +1,7 @@
 const getProducts = async () => {
   try {
     return new Promise((resolve, reject) => {
-      fetch("http://localhost:3000/getLog/0", {
+      fetch("https://stock-app-api-production-e92f.up.railway.app/getLog/0", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -20,7 +20,7 @@ const getProducts = async () => {
 const getInventary = async () => {
   try {
     return new Promise((resolve, reject) => {
-        fetch("http://localhost:3000/getLog/1", {
+        fetch("https://stock-app-api-production-e92f.up.railway.app/getLog/1", {
           method: "GET",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -41,7 +41,7 @@ const getInventary = async () => {
 const addProduct = async (product) => {
   try {
     const { code, name, stock, stock_minimum } = product;
-    const response = await fetch("http://localhost:3000/addProduct", {
+    const response = await fetch("https://stock-app-api-production-e92f.up.railway.app/addProduct", {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -70,7 +70,7 @@ const addProduct = async (product) => {
 
 const updateStock = async (action, id, stock) => {
   try {
-    const response = await fetch("http://localhost:3000/updateStock", {
+    const response = await fetch("https://stock-app-api-production-e92f.up.railway.app/updateStock", {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
