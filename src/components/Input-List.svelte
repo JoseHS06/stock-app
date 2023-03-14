@@ -36,7 +36,7 @@ export let inputs;
                 <div class="fw-bold">{name}</div>
                 {date}
               </div>
-              <span class="badge bg-primary rounded-pill">{quantity}</span>
+              <span class="badge bg-success rounded-pill">{quantity}</span>
             </li>
 
           {/each}
