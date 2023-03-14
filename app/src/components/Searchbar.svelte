@@ -1,4 +1,5 @@
 <script>
+<<<<<<< Updated upstream
   import { onMount } from "svelte";
   import { getInventary } from "../app.js";
   import AddProduct from "./Add-Product.svelte";
@@ -21,6 +22,29 @@
 
 
 
+=======
+    import { getInventary } from "../app.js";
+    import AddProduct from "./Add-Product.svelte";
+    import InputList from "./Input-List.svelte";
+    import OutputList from "./Output-List.svelte";
+    let search = '';
+
+    const getInputs = async() =>{
+
+      const { status, data } = await getInventary();
+
+      console.log(data);
+
+    }
+
+    const getOutputs = async() => {
+
+      const { status, data } = await getInventary();
+
+      console.log(data);
+
+    }
+>>>>>>> Stashed changes
 </script>
 
 <div class="row mt-4">
@@ -47,7 +71,12 @@
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasInputs"
+<<<<<<< Updated upstream
         ><i class="bi bi-arrow-down-circle-fill" /> Entradas</button
+=======
+        on:click={() => getInputs()}
+        ><i class="bi bi-arrow-down-circle-fill"></i> Entradas</button
+>>>>>>> Stashed changes
       >
       <button
         type="button"
@@ -55,7 +84,12 @@
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasOutputs"
+<<<<<<< Updated upstream
         ><i class="bi bi-arrow-up-circle-fill" /> Salidas</button
+=======
+        on:click={() => getOutputs()}
+        ><i class="bi bi-arrow-up-circle-fill"></i> Salidas</button
+>>>>>>> Stashed changes
       >
       <button
         type="button"
@@ -77,7 +111,14 @@
   </div>
 </div>
 
+<<<<<<< Updated upstream
 <AddProduct />
 <InputList {inputs}/>
 <OutputList {outputs} />
 <ProductReport />
+=======
+
+<AddProduct/>
+<InputList />
+<OutputList />
+>>>>>>> Stashed changes
