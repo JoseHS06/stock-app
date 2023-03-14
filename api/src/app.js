@@ -1,10 +1,9 @@
+import { conexion } from '../db/db.js';
 import express from "express";
 import bodyParser from "body-parser";
 import cors from 'cors';
-import { conexion } from './db/db.js';
 
 const app = express();
-app.listen(3000);
 app.use(bodyParser.json());
 app.use(cors({origin: '*'}));
 
@@ -58,4 +57,4 @@ app.post('/updateStock', async (req, res) => {
 });
 
 
-console.log('Server Running at port 300');
+export default app;
