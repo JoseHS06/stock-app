@@ -1,16 +1,18 @@
 <script>
   import { onMount, tick } from "svelte";
+  export let inventary;
   let el;
   onMount(async () => {
     await tick();
+
     new DataTable(el, {
       dom: 'B<"clear">lfrtip',
       language: {
         url: "./translate.json",
       },
       lengthMenu: [
-        [6, 10 , 25, 50, "Todo"],
-        [6, 10 , 25, 50, -1],
+        [6, 10, 25, 50, "Todo"],
+        [6, 10, 25, 50, -1],
       ],
       buttons: [
         {
@@ -26,6 +28,7 @@
         },
       ],
     });
+    
   });
 </script>
 
@@ -55,66 +58,23 @@
         <table class="table table-dark" bind:this={el}>
           <thead>
             <tr>
-              <th>#</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Handle</th>
+              <th>Código</th>
+              <th>Producto</th>
+              <th>Entradas</th>
+              <th>Salidas</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr><tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+            {#each inventary as { code, product_name: name, inputs, outputs, total }}
+              <tr>
+                <td>{code}</td>
+                <td>{name}</td>
+                <td>{inputs}</td>
+                <td>{outputs}</td>
+                <td>{total}</td>
+              </tr>
+            {/each}
           </tbody>
         </table>
       </div>

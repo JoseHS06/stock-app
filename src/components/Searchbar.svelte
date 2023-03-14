@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { getInventary } from "../app.js";
+  import { getInventary, getProducts } from "../app.js";
   import AddProduct from "./Add-Product.svelte";
   import InputList from "./Input-List.svelte";
   import OutputList from "./Output-List.svelte";
@@ -8,16 +8,35 @@
   let search = "";
   let inputs = [];
   let outputs = [];
+  let inventary = [];
 
   onMount(async () => {
 
+    getInventaryData();
+    getInventoryReport();
+
+    
+  });
+
+  const getInventaryData = async() => {
+
     const { status, data } = await getInventary();
+
     if(status == 200){
       inputs = [...data.filter(input => input.action == 1)];
       outputs = [...data.filter(input => input.action == 2)];
-      console.log(inputs)
     }
-  });
+
+  }
+
+  const getInventoryReport = async () => {
+
+    const { status, data } = await getProducts();
+    if (status == 200) {
+      inventary = [...data];
+    }
+
+  }
 
 
 
@@ -80,4 +99,4 @@
 <AddProduct />
 <InputList {inputs}/>
 <OutputList {outputs} />
-<ProductReport />
+<ProductReport {inventary} />
