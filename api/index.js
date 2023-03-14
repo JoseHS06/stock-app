@@ -48,7 +48,7 @@ app.post('/updateStock', async (req, res) => {
         const { action, id, stock } = req.body;
         const [rows] = await conexion.query('CALL itemAction(?, ?, ?)', [action, id, stock]);
 
-        return res.status(200).json({ message: 'Stock actualizado correctamente', data: rows });
+        return res.status(200).json({ message: 'Stock actualizado correctamente', status: 200 });
 
     } catch (error) {
 

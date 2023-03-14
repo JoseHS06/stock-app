@@ -1,5 +1,6 @@
 <script>
-  import { updateStock } from "../app";
+  import Swal from "sweetalert2";
+  import { updateStock } from "../app.js";
 
   export let productId;
   $: activeTab = 1;
@@ -21,16 +22,28 @@
     }
 
     alertContent = "";
-
-    if (type == 1) {
-      const response = await updateStock(1, productId, stock);
-      const { data, status } = response;
-    } else {
-      const response = await updateStock(2, productId, stock);
-      const { data, status } = response;
-    }
+    updateRequest(type);
   };
 
+  const updateRequest = async (action) => {
+
+    const response = await updateStock(action, productId, stock);
+    const { status } = response;
+
+    if(status == 200){
+      Swal.fire({
+          title: "Stock Actualizado",
+          text: `${action == 1 ? 'Entrada' : 'Salida'} registrada correctamente`,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+             
+          }
+      });
+    }
+
+  }
   const initTab = (tab) => {
     activeTab = tab;
     alertContent = "";

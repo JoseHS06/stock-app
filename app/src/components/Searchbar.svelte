@@ -1,6 +1,26 @@
 <script>
-    import AddProduct from "./Add-Product.svelte";
-    let search = '';
+  import { onMount } from "svelte";
+  import { getInventary } from "../app.js";
+  import AddProduct from "./Add-Product.svelte";
+  import InputList from "./Input-List.svelte";
+  import OutputList from "./Output-List.svelte";
+  import ProductReport from "./Product-Report.svelte";
+  let search = "";
+  let inputs = [];
+  let outputs = [];
+
+  onMount(async () => {
+
+    const { status, data } = await getInventary();
+    if(status == 200){
+      inputs = [...data.filter(input => input.action == 1)];
+      outputs = [...data.filter(input => input.action == 2)];
+      console.log(inputs)
+    }
+  });
+
+
+
 </script>
 
 <div class="row mt-4">
@@ -10,44 +30,54 @@
         <span class="input-group-text"><i class="bi bi-search" /></span>
         <input
           type="text"
-          class="form-control form-control-lg"
+          class="form-control"
           placeholder="Buscar Producto..."
           bind:value={search}
           on:input
         />
       </div>
-      <div class="form-text">Ingresa o escanea el código del producto</div>
+      <div class="form-text text-sm">Ingresa o escanea el código del producto</div>
     </div>
   </div>
   <div class="col-lg-7 col-sm-12">
     <div class="mb-3 d-flex justify-content-end">
       <button
         type="button"
-        class="btn btn-lg btn-primary shadow-sm"
+        class="btn btn-primary shadow-sm"
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
-        data-bs-toggle="offcanvas" 
+        data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasInputs"
-        ><i class="bi bi-arrow-down-circle-fill"></i> Entradas</button
+        ><i class="bi bi-arrow-down-circle-fill" /> Entradas</button
       >
       <button
         type="button"
-        class="btn btn-lg btn-primary mx-2 shadow-sm"
+        class="btn btn-primary mx-2 shadow-sm"
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasOutputs"
-        ><i class="bi bi-arrow-up-circle-fill"></i> Salidas</button
+        ><i class="bi bi-arrow-up-circle-fill" /> Salidas</button
       >
       <button
         type="button"
-        class="btn btn-lg btn-primary shadow-sm"
+        class="btn btn-primary shadow-sm"
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasReport"
+        ><i class="bi bi-bar-chart-line-fill"></i> Reporte de Inventario</button
+      >
+      <button
+        type="button"
+        class="btn btn-success mx-2 shadow-sm"
+        style="background-color: #1c1f25; border-color: #1c1f25; color: #5865f2"
+        data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNewProduct"
-        ><i class="bi bi-plus-circle-fill"></i> Nuevo Producto</button
+        ><i class="bi bi-plus-circle-fill" /> Nuevo Producto</button
       >
     </div>
   </div>
 </div>
 
-
-<AddProduct/>
+<AddProduct />
+<InputList {inputs}/>
+<OutputList {outputs} />
+<ProductReport />

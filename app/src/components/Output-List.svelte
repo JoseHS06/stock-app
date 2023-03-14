@@ -1,3 +1,7 @@
+<script>
+  export let outputs;
+</script>
+
 <div
   class="offcanvas offcanvas-bottom"
   tabindex="-1"
@@ -20,51 +24,18 @@
     <div class="container d-flex justify-content-center">
       <div class="col-6">
         <ol class="list-group list-group-numbered">
-          <li
-            class="list-group-item d-flex justify-content-between align-items-start"
-          >
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Subheading</div>
-              Content for list item
-            </div>
-            <span class="badge bg-primary rounded-pill">14</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-start"
-          >
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Subheading</div>
-              Content for list item
-            </div>
-            <span class="badge bg-primary rounded-pill">14</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-start"
-          >
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Subheading</div>
-              Content for list item
-            </div>
-            <span class="badge bg-primary rounded-pill">14</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-start"
-          >
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Subheading</div>
-              Content for list item
-            </div>
-            <span class="badge bg-primary rounded-pill">14</span>
-          </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-start"
-          >
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Subheading</div>
-              Content for list item
-            </div>
-            <span class="badge bg-primary rounded-pill">14</span>
-          </li>
+          {#each outputs as {product_name: name, action_date: date, quantity} }
+              <li
+              class="list-group-item d-flex justify-content-between align-items-start"
+            >
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{name}</div>
+                {date}
+              </div>
+              <span class="badge bg-primary rounded-pill">{quantity}</span>
+            </li>
+
+          {/each}
         </ol>
       </div>
     </div>

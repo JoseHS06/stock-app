@@ -41,6 +41,7 @@ body {
 .form-control {
   border: 1.5px solid #13161b !important;
   background-color: #0d0e12 !important;
+  color: #ffffff !important;
 }
 
 .input-group-text {
@@ -61,7 +62,7 @@ body {
 .form-control:focus {
   color: #ffffff !important;
   background-color: #0d0e12 !important;
-  border-color: #13161b !important;
+  border-color: #5865f2 !important;
   outline: 0;
   box-shadow: none !important;
 }
@@ -78,13 +79,15 @@ body {
 }
 
 button.dt-button, div.dt-button, a.dt-button, input.dt-button {
-  background: #4cd137 !important;
-  color: #ffffff !important;
+  background: #1c1f25 !important;
+  color: #44bd32 !important;
   border-radius: 5px !important;
+  font-size: 16px;
 }
 
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
   color: #ffffff !important;
+  margin-bottom: 20px !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button{
@@ -108,11 +111,35 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button {
   color: #ffffff !important;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: #5865f2 !important;
-  color: #ffffff !important;
+.dataTables_wrapper .dataTables_length select {
+  background-color: #1c1f25 !important;
+  border: 1px solid #1c1f25 !important;
+  color: #FFFFFF !important;
 }
 
-.dataTables_wrapper .dataTables_length select {
-  background-color: #ffffff !important;
+.dt-buttons{
+  float: inherit !important;
+  margin-bottom: 20px !important;
+}
+
+.dataTables_wrapper .dataTables_filter input { 
+  border: 1px solid #1c1f25 !important;
+    border-radius: 3px;
+    padding: 5px;
+    outline: none;
+    background-color: #1c1f25  !important;
+    margin-left: 3px;
+    color: #FFFFFF !important;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: white !important;
+  border: 1px solid #1c1f25 !important;
+  background-color: #1c1f25 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background-color: #1c1f25 !important;
+  box-shadow: inset 0 0 3px #1c1f25 !important;
 }

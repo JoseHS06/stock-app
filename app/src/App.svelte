@@ -1,15 +1,11 @@
 <script>
-  import { Toast } from "bootstrap";
   import { onMount } from "svelte";
-  import { getProducts } from "./app";
+  import { getProducts } from "./app.js";
   import Header from "./components/Header.svelte";
   import Product from "./components/Product.svelte";
   import AddInventory from "./components/Add-Inventory.svelte";
   import Pagination from "./components/Pagination.svelte";
   import NotFound from "./components/Not-Found.svelte";
-  import InputList from "./components/Input-List.svelte";
-  import OutputList from "./components/Output-List.svelte";
-  import Datatable from "./components/datatable.svelte";
 
   let currentProducts = [];
   let filteredProducts = [];
@@ -25,11 +21,12 @@
   $: disabledFirst = page + 1 == 1 ? "disabled" : "";
 
   onMount(async () => {
-    const { data } =  await getProducts();
-    currentProducts = data;
-    filteredProducts = data;
-    console.log(data);
-    paginate(filteredProducts);
+    const { status, data } = await getProducts();
+    if (status == 200) {
+      currentProducts = data;
+      filteredProducts = data;
+      paginate(filteredProducts);
+    }
   });
 
   const searchProduct = (e) => {
@@ -42,7 +39,7 @@
     }
 
     const results = currentProducts.filter(
-      ({ name }) => name.toLowerCase().indexOf(word) > -1
+      ({ product_name: name }) => name.toLowerCase().indexOf(word) > -1
     );
 
     filteredProducts = [...results];
@@ -87,7 +84,4 @@
   <NotFound {currentPageRows} />
   <Pagination {page} {totalPages} {disabledLast} {disabledFirst} {setPage} />
   <AddInventory {productId} />
-  <InputList/>
-  <OutputList/>
-  <Datatable/>
 </main>
