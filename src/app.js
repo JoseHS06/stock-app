@@ -95,4 +95,30 @@ const updateStock = async (action, id, stock) => {
   }
 };
 
-export { getProducts, getInventary, addProduct, updateStock };
+const deleteItem = async (action, id) => {
+  try {
+    const response = await fetch("https://stock-app-api-production-e92f.up.railway.app/deleteItem", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        id,
+        action
+      }),
+    }).then((res) => res.json());
+
+    const { status, message } = response;
+
+    return {
+      status,
+      message
+    };
+
+  } catch (error) {
+    console.warn("Ocurrió un error al actualizar el stock" + error);
+  }
+};
+
+export { getProducts, getInventary, addProduct, updateStock, deleteItem };

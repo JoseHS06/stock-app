@@ -97,6 +97,6 @@
   </div>
 </div>
 
-<InputList {inputs}/>
-<OutputList {outputs} />
+<InputList {inputs} on:getInventaryData={getInventaryData} />
+<OutputList {outputs} on:getInventaryData={getInventaryData}  />
 <ProductReport {inventary} />

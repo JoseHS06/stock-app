@@ -84,7 +84,7 @@
   <div class="col-12">
     <div class="row">
       {#each currentPageRows as { id, product_name: name, total: stock, minimum }, index}
-        <Product {id} {name} {stock} {minimum} on:updateInventory={updateStock} />
+        <Product {id} {name} {stock} {minimum} on:updateInventory={updateStock} on:getInventary={getData}/>
       {/each}
     </div>
   </div>

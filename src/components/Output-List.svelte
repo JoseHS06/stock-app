@@ -1,8 +1,11 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Swal from "sweetalert2";
+  import { deleteItem } from "../app";
   export let outputs;
+  const dispatch = createEventDispatcher();
 
-  const showAlert = () => {
+  const showAlert = (id) => {
     Swal.fire({
       imageUrl: "https://img.icons8.com/fluency/256/delete-forever.png",
       imageWidth: 96,
@@ -15,8 +18,25 @@
       denyButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
+        deleteOutput(id);
       }
     });
+  };
+
+  const deleteOutput = async (id) => {
+    const response = await deleteItem(2, id);
+    const { status } = response;
+
+    if (status == 200) {
+      Swal.fire({
+        title: "Salida Eliminada",
+        text: "Salida eliminada con éxito",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        allowOutsideClick: false,
+      });
+      dispatch("getInventaryData");
+    }
   };
 </script>
 
@@ -42,7 +62,7 @@
     <div class="container d-flex justify-content-center">
       <div class="col-6">
         <ul class="list-group">
-          {#each outputs as { product_name: name, action_date: date, quantity }}
+          {#each outputs as { id_log, product_name: name, action_date: date, quantity }}
             <li class="list-group-item">
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">{name}</h6>
@@ -52,7 +72,7 @@
               <div class="w-100 d-flex justify-content-end">
                 <button
                   type="button"
-                  on:click={() => showAlert()}
+                  on:click={() => showAlert(id_log)}
                   class="btn btn-sm btn-primary"
                   style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF; font-size: 13px"
                   ><i class="bi bi-trash-fill" /> Eliminar</button
