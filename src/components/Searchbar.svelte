@@ -9,13 +9,13 @@
   let outputs = [];
   let inventary = [];
 
-  onMount(async () => {
+/*   onMount(async () => {
 
     getInventaryData();
     getInventoryReport();
 
     
-  });
+  }); */
 
   const getInventaryData = async() => {
 
@@ -67,6 +67,9 @@
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasInputs"
+        on:click={() => {
+          getInventaryData();
+        }}
         ><i class="bi bi-arrow-down-circle-fill" /> Entradas</button
       >
       <button
@@ -75,6 +78,9 @@
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasOutputs"
+        on:click={() => {
+          getInventaryData();
+        }}
         ><i class="bi bi-arrow-up-circle-fill" /> Salidas</button
       >
       <button
@@ -83,6 +89,11 @@
         style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasReport"
+        on:click={
+          () => {
+            getInventoryReport();
+          }
+        }
         ><i class="bi bi-bar-chart-line-fill"></i> Reporte de Inventario</button
       >
       <button
