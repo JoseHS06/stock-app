@@ -83,14 +83,13 @@ const updateStock = async (action, id, stock) => {
       }),
     }).then((res) => res.json());
 
-    const { status } = response;
+    const { status, message } = response;
 
-    if (status == 200) {
-      return {
-        status,
-        message: "Stock actualizado con éxito",
-      };
-    }
+    return {
+      status,
+      message
+    };
+
   } catch (error) {
     console.warn("Ocurrió un error al actualizar el stock" + error);
   }

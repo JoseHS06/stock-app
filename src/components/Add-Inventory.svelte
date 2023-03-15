@@ -34,7 +34,9 @@
 
   const updateRequest = async (action) => {
     const response = await updateStock(action, productId, stock);
+
     const { status } = response;
+
 
     if (status == 200) {
       Swal.fire({
@@ -51,6 +53,17 @@
           initTab(1);
         }
       });
+    }else if(status == 500){
+
+      Swal.fire({
+        title: "Stock No Disponible",
+        text: 'La cantidad a descontar es menor a la existente',
+        icon: "error",
+        confirmButtonText: "Aceptar",
+        allowOutsideClick: false,
+      });
+      initTab(1);
+
     }
   };
   const initTab = (tab) => {
