@@ -3,6 +3,7 @@
   import { getProducts } from "./app.js";
   import Header from "./components/Header.svelte";
   import Product from "./components/Product.svelte";
+  import AddProduct from "./components/Add-Product.svelte";
   import AddInventory from "./components/Add-Inventory.svelte";
   import Pagination from "./components/Pagination.svelte";
   import NotFound from "./components/Not-Found.svelte";
@@ -20,14 +21,19 @@
   $: disabledLast = page + 1 == totalPages.length ? "disabled" : "";
   $: disabledFirst = page + 1 == 1 ? "disabled" : "";
 
-  onMount(async () => {
+  onMount(() => {
+    getData();
+  });
+
+  const getData = async () => {
     const { status, data } = await getProducts();
     if (status == 200) {
       currentProducts = data;
       filteredProducts = [...currentProducts];
       paginate(filteredProducts);
+      console.log(data);
     }
-  });
+  };
 
   const searchProduct = (e) => {
     const word = e.target.value.toLowerCase();
@@ -39,7 +45,9 @@
     }
 
     const results = currentProducts.filter(
-      ({ code, product_name: name }) => name.toLowerCase().indexOf(word) > -1 || code.toLowerCase().indexOf(word) > -1
+      ({ code, product_name: name }) =>
+        name.toLowerCase().indexOf(word) > -1 ||
+        code.toLowerCase().indexOf(word) > -1
     );
 
     filteredProducts = [...results];
@@ -69,19 +77,19 @@
     const { id } = e.detail;
     productId = id;
   };
-
 </script>
 
 <main class="container">
   <Header on:input={searchProduct} />
   <div class="col-12">
     <div class="row">
-      {#each currentPageRows as { id, product_name: name, total: stock }, index}
-        <Product {id} {name} {stock} on:updateInventory={updateStock} />
+      {#each currentPageRows as { id, product_name: name, total: stock, minimum }, index}
+        <Product {id} {name} {stock} {minimum} on:updateInventory={updateStock} />
       {/each}
     </div>
   </div>
   <NotFound {currentPageRows} />
   <Pagination {page} {totalPages} {disabledLast} {disabledFirst} {setPage} />
-  <AddInventory {productId} />
+  <AddProduct on:getInventary={getData}/>
+  <AddInventory {productId} on:getInventary={getData}/>
 </main>

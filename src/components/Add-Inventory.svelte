@@ -1,8 +1,10 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Swal from "sweetalert2";
   import { updateStock } from "../app.js";
 
   export let productId;
+  const dispatch = createEventDispatcher();
   $: activeTab = 1;
   $: stock = "";
   $: alertContent = "";
@@ -20,30 +22,37 @@
       alertContent = "No se ha ingresado la cantidad";
       return;
     }
+    if(stock == 0){
+      alertContent = "La cantidad debe ser mayor a 0"
+      return;
+    }
+
 
     alertContent = "";
     updateRequest(type);
   };
 
   const updateRequest = async (action) => {
-
     const response = await updateStock(action, productId, stock);
     const { status } = response;
 
-    if(status == 200){
+    if (status == 200) {
       Swal.fire({
-          title: "Stock Actualizado",
-          text: `${action == 1 ? 'Entrada' : 'Salida'} registrada correctamente`,
-          icon: "success",
-          confirmButtonText: "Aceptar",
-        }).then((result) => {
-          if (result.isConfirmed) {
-             
-          }
+        title: "Stock Actualizado",
+        text: `${action == 1 ? "Entrada" : "Salida"} registrada correctamente`,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch("getInventary");
+          const event = new Event("click");
+          document.querySelector('#btnCloseInventory').dispatchEvent(event);
+          initTab(1);
+        }
       });
     }
-
-  }
+  };
   const initTab = (tab) => {
     activeTab = tab;
     alertContent = "";
@@ -55,11 +64,12 @@
   <div class="offcanvas-header">
     <h5 class="offcanvas-title text-white">Inventario</h5>
     <button
+      id="btnCloseInventory"
       type="button"
       class="btn btn-danger"
       style="color: #ffffff; border-radius: 100%; width: 40px; height: 40px; background: #1c1f25 !important; border-color: #1c1f25;"
       data-bs-dismiss="offcanvas"
-      aria-label="Close"><i class="bi bi-x-lg"></i></button
+      aria-label="Close"><i class="bi bi-x-lg" /></button
     >
   </div>
   <div class="offcanvas-body">
@@ -154,8 +164,7 @@
           >
 
           <div
-            class="w-75 alert alert-warning fade {stock == '' &&
-            activeTab == 1 &&
+            class="w-75 alert alert-danger fade {activeTab == 1 &&
             alertContent != ''
               ? 'show'
               : ''}"
@@ -216,8 +225,7 @@
           >
 
           <div
-            class="w-75 alert alert-warning fade {stock == '' &&
-            activeTab == 2 &&
+            class="w-75 alert alert-danger fade {activeTab == 2 &&
             alertContent != ''
               ? 'show'
               : ''}"

@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { getInventary, getProducts } from "../app.js";
-  import AddProduct from "./Add-Product.svelte";
   import InputList from "./Input-List.svelte";
   import OutputList from "./Output-List.svelte";
   import ProductReport from "./Product-Report.svelte";
@@ -96,7 +95,6 @@
   </div>
 </div>
 
-<AddProduct />
 <InputList {inputs}/>
 <OutputList {outputs} />
 <ProductReport {inventary} />

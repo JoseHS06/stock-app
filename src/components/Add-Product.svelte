@@ -1,7 +1,9 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Swal from "sweetalert2";
   import { addProduct } from "../app";
 
+  const dispatch = createEventDispatcher();
   let product = {
     code: "",
     name: "",
@@ -26,6 +28,8 @@
       alertContent = "No se ha ingresado la descripción";
     } else if (product.stock_minimum == "") {
       alertContent = "No se ha ingresado la cantidad mínima";
+    } else if (product.stock_minimum == 0) {
+      alertContent = "La cantidad debe ser mayor a 0";
     } else {
       alertContent = "";
       const response = await addProduct(product);
@@ -37,9 +41,15 @@
           text: "El producto ha sido agregado con éxito",
           icon: "success",
           confirmButtonText: "Aceptar",
+          allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) {
-             
+            dispatch("getInventary");
+            const event = new Event("click");
+            document.querySelector("#btnCloseNewProduct").dispatchEvent(event);
+            product.code = "";
+            product.name = "";
+            product.stock_minimum = "";
           }
         });
       }
@@ -52,6 +62,7 @@
     <h5 class="offcanvas-title text-white">Registrar Producto</h5>
 
     <button
+      id="btnCloseNewProduct"
       type="button"
       class="btn btn-danger"
       style="color: #ffffff; border-radius: 100%; width: 40px; height: 40px; 
@@ -117,7 +128,7 @@
         ><i class="bi bi-check-circle-fill" /> Registrar Producto</button
       >
 
-      <div class="w-75 alert alert-warning fade {isShowAlert}" role="alert">
+      <div class="w-75 alert alert-danger fade {isShowAlert}" role="alert">
         <small>{alertContent}</small>
       </div>
     </div>
