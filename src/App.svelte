@@ -24,7 +24,7 @@
     const { status, data } = await getProducts();
     if (status == 200) {
       currentProducts = data;
-      filteredProducts = data;
+      filteredProducts = [...currentProducts];
       paginate(filteredProducts);
     }
   });
@@ -39,7 +39,7 @@
     }
 
     const results = currentProducts.filter(
-      ({ product_name: name }) => name.toLowerCase().indexOf(word) > -1
+      ({ code, product_name: name }) => name.toLowerCase().indexOf(word) > -1 || code.toLowerCase().indexOf(word) > -1
     );
 
     filteredProducts = [...results];

@@ -1,8 +1,13 @@
 <script>
-  import { onMount, tick } from "svelte";
+
+  import { tick } from "svelte";
   export let inventary;
   let el;
-  onMount(async () => {
+
+  $: inventary.length > 0 && drawTable();
+
+  const drawTable = async() => {
+
     await tick();
 
     new DataTable(el, {
@@ -28,8 +33,9 @@
         },
       ],
     });
+
     
-  });
+  }
 </script>
 
 <div
