@@ -46,7 +46,9 @@
     <div class="mb-3">
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-search" /></span>
+        <!-- svelte-ignore a11y-autofocus -->
         <input
+          autofocus="true"
           type="text"
           class="form-control"
           placeholder="Buscar Producto..."

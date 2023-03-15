@@ -88,7 +88,9 @@
     </div>
 
     <div class="d-flex flex-column justify-content-center align-items-center">
+      <!-- svelte-ignore a11y-autofocus -->
       <input
+        autofocus="true"
         class="form-control w-75 mt-3"
         type="text"
         placeholder="Código"
