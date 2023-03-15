@@ -35,7 +35,7 @@
         confirmButtonText: "Aceptar",
         allowOutsideClick: false,
       });
-      dispatch("getInventaryData");
+      dispatch("getInventary");
     }
   };
 </script>

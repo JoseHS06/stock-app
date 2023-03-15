@@ -31,7 +31,6 @@
       currentProducts = data;
       filteredProducts = [...currentProducts];
       paginate(filteredProducts);
-      console.log(data);
     }
   };
 
