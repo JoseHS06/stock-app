@@ -133,6 +133,7 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button {
 }
 
 
+
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   color: white !important;
   border: 1px solid #1c1f25 !important;
@@ -142,4 +143,12 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button {
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
   background-color: #1c1f25 !important;
   box-shadow: inset 0 0 3px #1c1f25 !important;
+}
+
+.card-body{
+  padding: 5px 10px !important;
+}
+
+.card-footer{
+  padding: 5px 10px !important;
 }

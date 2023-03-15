@@ -1,7 +1,23 @@
 <script>
+  import Swal from "sweetalert2";
+  export let inputs;
 
-export let inputs;
-
+  const showAlert = () => {
+    Swal.fire({
+      imageUrl: "https://img.icons8.com/fluency/256/delete-forever.png",
+      imageWidth: 96,
+      imageHeight: 96,
+      html: `<p><small>¿Esta seguro de <strong>eliminar</strong>  el registro seleccionado?</small></p>
+                 <p><small style="font-size: 12px">*Esta acción es irreversible.</small></p>`,
+      allowOutsideClick: false,
+      showDenyButton: true,
+      confirmButtonText: "Si, eliminar",
+      denyButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+      }
+    });
+  };
 </script>
 
 <div
@@ -27,20 +43,26 @@ export let inputs;
   <div class="offcanvas-body small">
     <div class="container d-flex justify-content-center">
       <div class="col-6">
-        <ol class="list-group list-group-numbered">
-          {#each inputs as {product_name: name, action_date: date, quantity} }
-              <li
-              class="list-group-item d-flex justify-content-between align-items-start"
-            >
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">{name}</div>
-                {date}
+        <ul class="list-group">
+          {#each inputs as { product_name: name, action_date: date, quantity }}
+            <li class="list-group-item">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">{name}</h6>
+                <small>{date}</small>
               </div>
-              <span class="badge bg-success rounded-pill">{quantity}</span>
+              <span>Cantidad: {quantity} Producto(s)</span>
+              <div class="w-100 d-flex justify-content-end">
+                <button
+                  type="button"
+                  on:click={() => showAlert()}
+                  class="btn btn-sm btn-primary"
+                  style="background-color: #1c1f25; border-color:  #1c1f25; color: #FFFFFF; font-size: 13px"
+                  ><i class="bi bi-trash-fill" /> Eliminar</button
+                >
+              </div>
             </li>
-
           {/each}
-        </ol>
+        </ul>
       </div>
     </div>
   </div>
